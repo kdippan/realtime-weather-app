@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Primary Title Tag -->
+<title>WeatherPro Dashboard - Real-Time Weather & Forecast | Dippan Bhusal</title>
+
+<!-- Meta Description -->
+<meta name="description" content="WeatherPro Dashboard delivers real-time weather, 3-day forecasts, air quality, and astronomy data worldwide. Stay prepared with live updates!" />
+
+<!-- Author and Contact -->
+<meta name="author" content="Dippan Bhusal" />
+<meta name="contact" content="dippan.connect@gmail.com" />
+
+<!-- Charset & Viewport -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Robots and Search Engine Bots -->
+<meta name="robots" content="index, follow" />
+<meta name="googlebot" content="index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1" />
+<meta name="bingbot" content="index, follow" />
+
+<!-- Canonical Tag -->
+<link rel="canonical" href="https://weatherpro-dashboard.netlify.app/" />
+
+<!-- Favicon and Multi-Device Icon Links -->
+<link rel="icon" type="image/png" sizes="32x32" href="./icon.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="./icon.png" />
+<link rel="shortcut icon" href="./icon.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="./icon.png" />
+<link rel="manifest" href="/manifest.json" />
+<meta name="msapplication-TileColor" content="#3b82f6" />
+<meta name="theme-color" content="#3b82f6" />
+<!-- Microsoft Tiles -->
+<meta name="msapplication-config" content="/browserconfig.xml" />
+<meta name="msapplication-TileColor" content="#3b82f6" />
+<meta name="theme-color" content="#3b82f6" />
+<!-- Open Graph (Facebook, LinkedIn, etc.) -->
+<meta property="og:title" content="WeatherPro Dashboard - Real-Time Weather & Forecast" />
+<meta property="og:description" content="WeatherPro Dashboard delivers live weather data, forecasts, air quality, and more for your location." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://weatherpro-dashboard.netlify.app/" />
+<meta property="og:image" content="https://weatherpro-dashboard.netlify.app/icon.png" />
+<meta property="og:site_name" content="WeatherPro Dashboard" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="WeatherPro Dashboard - Real-Time Weather & Forecast" />
+<meta name="twitter:description" content="Check live weather, forecasts, and air quality worldwide with WeatherPro Dashboard." />
+<meta name="twitter:image" content="https://weatherpro-dashboard.netlify.app/icon.png" />
+<meta name="twitter:creator" content="@DippanBhusal" />
+
+<!-- Structured Data: Organization & Website -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://weatherpro-dashboard.netlify.app/#organization",
+      "name": "WeatherPro",
+      "url": "https://weatherpro-dashboard.netlify.app/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://weatherpro-dashboard.netlify.app/icon.png",
+        "width": 512,
+        "height": 512
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "dippan.connect@gmail.com",
+        "contactType": "customer support",
+        "name": "Dippan Bhusal"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://weatherpro-dashboard.netlify.app/#website",
+      "url": "https://weatherpro-dashboard.netlify.app/",
+      "name": "WeatherPro Dashboard",
+      "description": "A professional weather dashboard providing real-time weather, 3-day forecasts, air quality index, astronomy data, and alerts worldwide.",
+      "publisher": {
+        "@id": "https://weatherpro-dashboard.netlify.app/#organization"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://weatherpro-dashboard.netlify.app/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+  ]
+}
+</script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;500;600;700" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    
+    <!-- Lordicon -->
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen" role="status" aria-live="polite">
+        <lord-icon
+            src="https://cdn.lordicon.com/wxnxiano.json"
+            trigger="loop"
+            colors="primary:#ffffff,secondary:#3b82f6"
+            style="width:100px;height:100px">
+        </lord-icon>
+        <p>Loading weather data...</p>
+    </div>
+
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="container">
+            <nav class="navbar" role="navigation" aria-label="Main navigation">
+                <div class="logo">
+                    <i class="fas fa-cloud-sun"></i>
+                    <h1>WeatherPro</h1>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#current" class="nav-link active" aria-current="page">Current</a></li>
+                    <li><a href="#forecast" class="nav-link">Forecast</a></li>
+                    <li><a href="#hourly" class="nav-link">Hourly</a></li>
+                    <li><a href="#astronomy" class="nav-link">Astronomy</a></li>
+                    <li><a href="#marine" class="nav-link">Marine</a></li>
+                    <li><a href="#alerts" class="nav-link">Alerts</a></li>
+                </ul>
+                <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+                    <span class="material-icons">menu</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content" role="main">
+        <div class="container">
+            
+            <!-- Search Section -->
+            <section class="search-section" aria-label="Location search">
+                <div class="search-container">
+                    <div class="search-box">
+                        <span class="material-icons search-icon">search</span>
+                        <input 
+                            type="search" 
+                            id="locationSearch" 
+                            class="search-input" 
+                            placeholder="Search city or location..." 
+                            autocomplete="off"
+                            aria-label="Search for city or location"
+                        >
+                        <button id="searchBtn" class="search-btn" aria-label="Search location">
+                            <span class="material-icons">arrow_forward</span>
+                        </button>
+                    </div>
+                    <button id="currentLocationBtn" class="location-btn" aria-label="Use current location">
+                        <span class="material-icons">my_location</span>
+                        Current Location
+                    </button>
+                </div>
+                <!-- Search Suggestions -->
+                <div id="searchSuggestions" class="search-suggestions" role="listbox" aria-label="Location suggestions"></div>
+            </section>
+
+            <!-- Weather Alerts -->
+            <section id="alerts" class="alerts-section" aria-live="polite" aria-atomic="true">
+                <!-- Alerts will be dynamically inserted here -->
+            </section>
+
+            <!-- Current Weather Section -->
+            <section id="current" class="current-weather-section" aria-label="Current weather conditions">
+                <div class="current-weather-card glass-effect">
+                    <div class="weather-header">
+                        <div class="location-info">
+                            <h2 id="locationName" class="location-name">
+                                <span class="material-icons">location_on</span>
+                                <span>Loading...</span>
+                            </h2>
+                            <p id="localTime" class="local-time"></p>
+                        </div>
+                    </div>
+                    
+                    <div class="weather-main">
+                        <div class="temperature-section">
+                            <div class="temp-display">
+                                <span id="currentTemp" class="current-temp">--</span>
+                                <span class="temp-unit">°C</span>
+                            </div>
+                            <div class="feels-like">
+                                Feels like <span id="feelsLike">--</span>°C
+                            </div>
+                            <div class="weather-condition">
+                                <span id="weatherCondition">--</span>
+                            </div>
+                        </div>
+                        
+                        <div class="weather-icon-display">
+                            <img id="weatherIcon" src="" alt="Weather condition icon" class="weather-icon-large">
+                            <lord-icon
+                                id="animatedWeatherIcon"
+                                src="https://cdn.lordicon.com/zfzufhzk.json"
+                                trigger="loop"
+                                colors="primary:#ffffff,secondary:#3b82f6"
+                                style="width:150px;height:150px;display:none;">
+                            </lord-icon>
+                        </div>
+                    </div>
+                    
+                    <!-- Weather Details Grid -->
+                    <div class="weather-details-grid">
+                        <div class="detail-item">
+                            <span class="material-icons detail-icon">water_drop</span>
+                            <div class="detail-content">
+                                <span class="detail-label">Humidity</span>
+                                <span id="humidity" class="detail-value">--</span>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span class="material-icons detail-icon">air</span>
+                            <div class="detail-content">
+                                <span class="detail-label">Wind Speed</span>
+                                <span id="windSpeed" class="detail-value">--</span>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span class="material-icons detail-icon">compress</span>
+                            <div class="detail-content">
+                                <span class="detail-label">Pressure</span>
+                                <span id="pressure" class="detail-value">--</span>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span class="material-icons detail-icon">visibility</span>
+                            <div class="detail-content">
+                                <span class="detail-label">Visibility</span>
+                                <span id="visibility" class="detail-value">--</span>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span class="material-icons detail-icon">wb_sunny</span>
+                            <div class="detail-content">
+                                <span class="detail-label">UV Index</span>
+                                <span id="uvIndex" class="detail-value">--</span>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span class="material-icons detail-icon">cloud</span>
+                            <div class="detail-content">
+                                <span class="detail-label">Cloud Cover</span>
+                                <span id="cloudCover" class="detail-value">--</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Air Quality Section -->
+                <div class="air-quality-card glass-effect">
+                    <h3 class="section-title">
+                        <i class="fas fa-lungs"></i>
+                        Air Quality Index
+                    </h3>
+                    <div class="aqi-content">
+                        <div class="aqi-value-display">
+                            <div id="aqiValue" class="aqi-value">--</div>
+                            <div id="aqiCategory" class="aqi-category">--</div>
+                        </div>
+                        <div class="aqi-details">
+                            <div class="aqi-item">
+                                <span class="aqi-label">CO</span>
+                                <span id="co" class="aqi-item-value">--</span>
+                            </div>
+                            <div class="aqi-item">
+                                <span class="aqi-label">O₃</span>
+                                <span id="o3" class="aqi-item-value">--</span>
+                            </div>
+                            <div class="aqi-item">
+                                <span class="aqi-label">NO₂</span>
+                                <span id="no2" class="aqi-item-value">--</span>
+                            </div>
+                            <div class="aqi-item">
+                                <span class="aqi-label">SO₂</span>
+                                <span id="so2" class="aqi-item-value">--</span>
+                            </div>
+                            <div class="aqi-item">
+                                <span class="aqi-label">PM2.5</span>
+                                <span id="pm2_5" class="aqi-item-value">--</span>
+                            </div>
+                            <div class="aqi-item">
+                                <span class="aqi-label">PM10</span>
+                                <span id="pm10" class="aqi-item-value">--</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Hourly Forecast Section -->
+            <section id="hourly" class="hourly-forecast-section" aria-label="Hourly weather forecast">
+                <h2 class="section-header">
+                    <span class="material-icons">schedule</span>
+                    24-Hour Forecast
+                </h2>
+                <div id="hourlyForecast" class="hourly-scroll-container">
+                    <!-- Hourly forecast cards will be dynamically inserted here -->
+                </div>
+            </section>
+
+            <!-- 3-Day Forecast Section -->
+            <section id="forecast" class="forecast-section" aria-label="3-day weather forecast">
+                <h2 class="section-header">
+                    <span class="material-icons">calendar_month</span>
+                    3-Day Forecast
+                </h2>
+                <div id="threeDayForecast" class="forecast-grid">
+                    <!-- 3-day forecast cards will be dynamically inserted here -->
+                </div>
+            </section>
+
+            <!-- Astronomy Section -->
+            <section id="astronomy" class="astronomy-section" aria-label="Astronomy information">
+                <h2 class="section-header">
+                    <span class="material-icons">brightness_2</span>
+                    Sun & Moon
+                </h2>
+                <div class="astronomy-grid">
+                    <div class="astronomy-card glass-effect">
+                        <div class="astronomy-header">
+                            <i class="fas fa-sun astronomy-icon-sun"></i>
+                            <h3>Sun</h3>
+                        </div>
+                        <div class="astronomy-details">
+                            <div class="astronomy-item">
+                                <span class="material-icons">wb_twilight</span>
+                                <div>
+                                    <span class="astronomy-label">Sunrise</span>
+                                    <span id="sunrise" class="astronomy-value">--</span>
+                                </div>
+                            </div>
+                            <div class="astronomy-item">
+                                <span class="material-icons">nights_stay</span>
+                                <div>
+                                    <span class="astronomy-label">Sunset</span>
+                                    <span id="sunset" class="astronomy-value">--</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="astronomy-card glass-effect">
+                        <div class="astronomy-header">
+                            <i class="fas fa-moon astronomy-icon-moon"></i>
+                            <h3>Moon</h3>
+                        </div>
+                        <div class="astronomy-details">
+                            <div class="astronomy-item">
+                                <span class="material-icons">brightness_3</span>
+                                <div>
+                                    <span class="astronomy-label">Moonrise</span>
+                                    <span id="moonrise" class="astronomy-value">--</span>
+                                </div>
+                            </div>
+                            <div class="astronomy-item">
+                                <span class="material-icons">bedtime</span>
+                                <div>
+                                    <span class="astronomy-label">Moonset</span>
+                                    <span id="moonset" class="astronomy-value">--</span>
+                                </div>
+                            </div>
+                            <div class="astronomy-item">
+                                <span class="material-icons">dark_mode</span>
+                                <div>
+                                    <span class="astronomy-label">Moon Phase</span>
+                                    <span id="moonPhase" class="astronomy-value">--</span>
+                                </div>
+                            </div>
+                            <div class="astronomy-item">
+                                <span class="material-icons">light_mode</span>
+                                <div>
+                                    <span class="astronomy-label">Illumination</span>
+                                    <span id="moonIllumination" class="astronomy-value">--</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Marine Weather Section -->
+            <section id="marine" class="marine-section" aria-label="Marine weather forecast">
+                <h2 class="section-header">
+                    <span class="material-icons">sailing</span>
+                    Marine Weather
+                </h2>
+                <div id="marineWeather" class="marine-grid">
+                    <!-- Marine weather data will be dynamically inserted here -->
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>WeatherPro</h3>
+                    <p>Professional weather dashboard providing real-time weather data, forecasts, and alerts worldwide.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Features</h4>
+                    <ul>
+                        <li><a href="#current">Current Weather</a></li>
+                        <li><a href="#forecast">3-Day Forecast</a></li>
+                        <li><a href="#hourly">Hourly Forecast</a></li>
+                        <li><a href="#astronomy">Astronomy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/share/1FGi5F6QzS/" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://x.com/DippanBhusal" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/dippan.bhusal?igsh=cDduYnV3cThiZHpl" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 WeatherPro. All rights reserved. | Powered by <a href="https://www.weatherapi.com/" target="_blank" rel="noopener">WeatherAPI.com</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Error Modal -->
+    <div id="errorModal" class="modal" role="dialog" aria-labelledby="errorModalTitle" aria-hidden="true">
+        <div class="modal-content">
+            <span class="close" aria-label="Close modal">&times;</span>
+            <h2 id="errorModalTitle">
+                <span class="material-icons">error_outline</span>
+                Error
+            </h2>
+            <p id="errorMessage"></p>
+            <button class="btn-primary" onclick="closeErrorModal()">Close</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

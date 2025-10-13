@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /node_modules/
+Disallow: /scripts/
+Disallow: /admin/
+
+Sitemap: https://weatherpro-dashboard.netlify.app/sitemap.xml
+Host: https://weatherpro-dashboard.netlify.app
