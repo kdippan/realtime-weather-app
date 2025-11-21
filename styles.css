@@ -1298,3 +1298,134 @@ body {
         border: 1px solid black;
     }
 }
+.author-section {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+  padding: 40px 20px;
+  margin-top: 60px;
+  border-top: 2px solid rgba(99, 102, 241, 0.2);
+}
+
+.author-card {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.author-info h3 {
+  font-size: 24px;
+  color: #1e293b;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.author-details {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.author-name {
+  font-size: 20px;
+  margin: 0;
+}
+
+.author-name strong {
+  color: #6366f1;
+  font-size: 22px;
+}
+
+.author-title {
+  display: block;
+  color: #64748b;
+  font-size: 16px;
+  margin-top: 5px;
+  font-weight: 500;
+}
+
+.author-bio {
+  color: #475569;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 10px 0;
+}
+
+.author-links {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.author-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+}
+
+.author-links a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+}
+
+.author-links svg {
+  width: 20px;
+  height: 20px;
+}
+
+.copyright {
+  text-align: center;
+  color: #64748b;
+  font-size: 14px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .author-card {
+    background: rgba(30, 41, 59, 0.9);
+  }
+  
+  .author-info h3,
+  .author-name strong {
+    color: #818cf8;
+  }
+  
+  .author-bio,
+  .copyright {
+    color: #cbd5e1;
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .author-section {
+    padding: 30px 15px;
+  }
+  
+  .author-card {
+    padding: 20px;
+  }
+  
+  .author-links {
+    flex-direction: column;
+  }
+  
+  .author-links a {
+    width: 100%;
+    justify-content: center;
+  }
+}
